@@ -157,6 +157,13 @@ do
   --   and `:help lua-guide-options`
   vim.o.list = true
   vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
+  vim.opt.tabstop = 2
+  vim.opt.shiftwidth = 2
+  vim.opt.softtabstop = 2
+  vim.opt.expandtab = true
+
+  vim.opt.termguicolors = true
+  vim.cmd.syntax 'enable'
 
   -- Preview substitutions live, as you type!
   vim.o.inccommand = 'split'
@@ -433,16 +440,27 @@ do
     },
   }
 
-    -- dracula theme setup
+  -- dracula theme setup
   vim.pack.add { gh 'Mofiqul/dracula.nvim' }
   require('dracula').setup {
-    transparent_bg = true
+    transparent_bg = true,
+  }
+
+  -- vitesse setup
+  vim.pack.add {
+    gh 'tjdevries/colorbuddy.nvim',
+    gh '2nthony/vitesse.nvim',
+  }
+
+  require('vitesse').setup {
+    transparent_background = true,
+    transparent_float_background = true,
   }
 
   -- Load the colorscheme here.
   -- Like many other themes, this one has different styles, and you could load
   -- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
-  vim.cmd.colorscheme 'dracula'
+  vim.cmd.colorscheme 'vitesse'
 
   -- Highlight todo, notes, etc in comments
   vim.pack.add { gh 'folke/todo-comments.nvim' }
@@ -906,9 +924,9 @@ do
       -- See `:help blink-cmp-config-keymap` for defining your own keymap
       preset = 'default',
 
-      ['<C-j>'] = {'select_next','fallback'},
-      ['<C-k>'] = {'select_prev','fallback'},
-      ['<C-l>'] = {'select_and_accept'},
+      ['<C-j>'] = { 'select_next', 'fallback' },
+      ['<C-k>'] = { 'select_prev', 'fallback' },
+      ['<C-l>'] = { 'select_and_accept' },
       ['<C-space>'] = { 'show', 'show_documentation', 'hide_documentation' },
 
       -- For more advanced Luasnip keymaps (e.g. selecting choice nodes, expansion) see:
